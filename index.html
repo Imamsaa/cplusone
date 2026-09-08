@@ -65,6 +65,7 @@ function nextLevel(){
     showFeedback('bad','🔒 <b>Belum bisa lanjut.</b> Selesaikan playground ini terlebih dahulu.');
   }
 }
+function evaluate
 function evaluate(){
   const c=editor.value, t=TASKS[current];
   const worked=c.trim()!==t.starter.trim() && !/\bTODO\b/i.test(c);
@@ -86,6 +87,7 @@ function evaluate(){
     return worked && result;
   });
 }
+function renderChecks
 function renderChecks(r){
   const t=TASKS[current];
   $('checklist').innerHTML=t.checks.map((x,i)=>`<div class="check-item ${r[i]?'pass':''}">
@@ -95,6 +97,7 @@ function renderChecks(r){
   $('masterBar').style.width=p+'%';$('masterText').textContent=`${d}/${total} checkpoint (${p}%)`;
   $('pointStat').textContent=`${d}/${total}`;$('masteryStat').textContent=Math.round(Object.keys(completed).length/TASKS.length*100)+'%';
 }
+function checkAll
 function checkAll(){
   save();
   const r=evaluate(); renderChecks(r);
@@ -109,6 +112,7 @@ function checkAll(){
   if(r.every(Boolean)){markDone();showFeedback('ok','🎯 <b>LULUS TOTAL!</b> Semua checkpoint terpenuhi.');}
   else showFeedback('bad',`🔎 ${r.filter(Boolean).length}/${r.length} checkpoint terpenuhi. Periksa checklist.`);
 }
+function markDone
 function markDone(){if(!completed[current]){completed[current]=true;xp+=TASKS[current].xp;saveProgress();renderLevels();updateStats()}}
 function updateStats(){$('xpStat').textContent=xp;$('masteryStat').textContent=Math.round(Object.keys(completed).length/TASKS.length*100)+'%'}
 function showFeedback(type,text){const e=$('feedback');if(!type){e.className='feedback';e.innerHTML=''}else{e.className='feedback show '+type;e.innerHTML=text}}
